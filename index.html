@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albert Johnson | Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Modern Color Variables */
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --accent: #ff006e;
+            --dark: #14213d;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #06d6a0;
+            --warning: #ffd166;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin: 0 15px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .language-btn {
+            background: transparent;
+            border: none;
+            margin: 0 5px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--gray);
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .language-btn.active,
+        .language-btn:hover {
+            color: var(--primary);
+            background: rgba(58, 134, 255, 0.1);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        #home {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.05) 0%, rgba(131, 56, 236, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .hero-text h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Specialities Section */
+        #speciality {
+            background-color: white;
+        }
+
+        .specialities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .speciality-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .speciality-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .speciality-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .speciality-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .speciality-card p {
+            color: var(--gray);
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.03) 0%, rgba(131, 56, 236, 0.03) 100%);
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--light);
+            color: var(--dark);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .project-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.03) 0%, rgba(131, 56, 236, 0.03) 100%);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-image {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .contact-image img {
+            max-width: 250px;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+        }
+
+        .whatsapp-form {
+            margin-top: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-text p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+
+            .hero-container,
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text,
+            .about-text {
+                max-width: 100%;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 100px 20px 40px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                margin: 15px 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+                z-index: 1000;
+            }
+
+            .language-selector {
+                margin-right: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .specialities-grid,
+            .projects-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/LOGO_OUTLINE.png" alt="Albert Johnson Logo">
+                </a>
+            </div>
+
+            <div class="language-selector">
+                <button class="language-btn active" data-lang="en">EN</button>
+                <button class="language-btn" data-lang="pt">PT</button>
+                <button class="language-btn" data-lang="es">ES</button>
+            </div>
+
+            <button class="mobile-toggle" id="mobile-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" data-i18n="home">Home</a></li>
+                <li><a href="#about" data-i18n="about">About</a></li>
+                <li><a href="#speciality" data-i18n="speciality">Speciality</a></li>
+                <li><a href="#projects" data-i18n="projects">Projects</a></li>
+                <li><a href="#portfolio" data-i18n="portfolio">Portfolio</a></li>
+                <li><a href="#contact" data-i18n="contact">Contact</a></li>
+            </ul>
+
+            <div class="btn-contact">
+                <a href="#contact">
+                    <button class="btn btn-primary" data-i18n="contact">Contact</button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="container hero-container">
+                <div class="hero-text">
+                    <h1 data-i18n="title">TRANSFORMING IDEAS INTO <span>DIGITAL REALITY</span>.</h1>
+                    <p data-i18n="intro1">Creativity and innovation go hand in hand...</p>
+                    <p data-i18n="intro2">My name is <strong>Albert Johnson</strong>, a passionate web developer
+                        dedicated to crafting exceptional digital experiences.</p>
+                    <div class="btn-contact">
+                        <a href="#contact">
+                            <button class="btn btn-primary" data-i18n="linkUp">Let's Connect</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="images/jo.jpg" alt="Albert Johnson">
+                </div>
+            </div>
+        </section>
+
+        <section id="speciality">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="specialityTitle">MY <span>SPECIALITIES</span></h2>
+                    <p data-i18n="specialityDesc">I offer a range of services to bring your digital vision to life</p>
+                </div>
+                <div class="specialities-grid">
+                    <div class="speciality-card">
+                        <i class="bi bi-code-square"></i>
+                        <h3 data-i18n="webDesign">Web Design</h3>
+                        <p data-i18n="webDesignDesc">Creating visually appealing and user-friendly websites that enhance
+                            the user experience.</p>
+                    </div>
+
+                    <div class="speciality-card">
+                        <i class="bi bi-cart"></i>
+                        <h3 data-i18n="webDev">Web Development</h3>
+                        <p data-i18n="webDevDesc">Building robust and scalable web applications using the latest
+                            technologies and frameworks.</p>
+                    </div>
+
+                    <div class="speciality-card">
+                        <i class="bi bi-search"></i>
+                        <h3 data-i18n="seo">SEO Optimization</h3>
+                        <p data-i18n="seoDesc">Improving website visibility and ranking on search engines through
+                            effective SEO strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container about-container">
+                <div class="about-image">
+                    <img src="images/IMG-20250410-WA0056.jpg" alt="Albert Johnson">
+                </div>
+                <div class="about-text">
+                    <div class="section-title">
+                        <h2 data-i18n="aboutTitle">ABOUT <span>ME</span></h2>
+                    </div>
+                    <p data-i18n="aboutText1">As a web developer, I am passionate about creating websites that are not
+                        only visually appealing but also user-friendly and optimized for performance. I have a strong
+                        foundation in HTML, CSS, and JavaScript, and I am constantly learning new technologies and
+                        frameworks to stay up-to-date with the latest trends in web development.</p>
+                    <p data-i18n="aboutText2">I believe that a website should be a reflection of the brand it
+                        represents, and I work closely with my clients to understand their vision and goals. My
+                        attention to detail and commitment to quality ensure that every project I undertake is completed
+                        to the highest standard.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/Albert__Johnson_"><i class="bi bi-instagram"></i></a>
+                        <a href="https://linkedin.com/in/AlbertJohnsonOfori"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/AlbertJohnson994"><i class="bi bi-github"></i></a>
+                        <a href="https://x.com/albertjohn12221?s=21"><i class="bi bi-twitter-x"></i></a>
+                        <a href="https://facebook.com/albert.o.johnson.12"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="projectsTitle">MY <span>PROJECTS</span></h2>
+                    <p data-i18n="projectsDesc">Check out some of my recent work</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/countD.png" alt="Countdown Timer Project">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-i18n="project1Title">Countdown Timer</h3>
+                            <p data-i18n="project1Desc">A responsive countdown timer with modern design and customizable
+                                options.</p>
+                            <a href="https://countdown-timer-chi-five.vercel.app/" class="btn btn-outline"
+                                data-i18n="visit">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/res.png" alt="Restaurant Website Project">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-i18n="project2Title">Restaurant Website</h3>
+                            <p data-i18n="project2Desc">An elegant website for a restaurant with menu, reservation
+                                system and gallery.</p>
+                            <a href="https://site-de-restaurante-nu.vercel.app/" class="btn btn-outline"
+                                data-i18n="visit">View Project</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/dis.png" alt="Disney+ Clone Project">
+                        </div>
+                        <div class="project-content">
+                            <h3 data-i18n="project3Title">Disney+ Clone</h3>
+                            <p data-i18n="project3Desc">A functional clone of the Disney+ streaming platform with
+                                responsive design.</p>
+                            <a href="https://clone-disneyplus-lxgn.vercel.app/" class="btn btn-outline"
+                                data-i18n="visit">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="portfolioTitle">MY <span>PORTFOLIO</span></h2>
+                    <p data-i18n="portfolioDesc">A visual showcase of my work and projects</p>
+                </div>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-image" style="background-image: url(images/cdt.jpg);"></div>
+                        <div class="portfolio-overlay">
+                            <h3 data-i18n="project1Title">Countdown Timer</h3>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-image" style="background-image: url(images/restaurant.jpg);"></div>
+                        <div class="portfolio-overlay">
+                            <h3 data-i18n="project2Title">Restaurant Website</h3>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-image" style="background-image: url(images/dysney.jpg);"></div>
+                        <div class="portfolio-overlay">
+                            <h3 data-i18n="project3Title">Disney+ Clone</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2 data-i18n="contactTitle">CONTACT <span>ME</span></h2>
+                    <p data-i18n="contactDesc">Get in touch and let's discuss your project</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-form">
+                        <form action="https://formsubmit.co/albert.johnson994@gmail.com" method="POST">
+                            <div class="form-group">
+                                <label for="name" data-i18n="formName">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" data-i18n="formPhone">Phone</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" data-i18n="formEmail">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" data-i18n="formMessage">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
+                            <button type="submit" class="btn btn-primary" data-i18n="send">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-image">
+                            <img src="images/LOGOFILLED.png" alt="Albert Johnson Logo">
+                        </div>
+
+                        <div class="whatsapp-form">
+                            <h3 data-i18n="whatsappTitle">Message me on WhatsApp</h3>
+                            <form id="form-whatsapp">
+                                <div class="form-group">
+                                    <label for="nome" data-i18n="formName">Name</label>
+                                    <input type="text" id="nome" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefone" data-i18n="formPhone">Phone</label>
+                                    <input type="tel" id="telefone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mensagem" data-i18n="formMessage">Message</label>
+                                    <textarea id="mensagem" rows="3" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" data-i18n="sendWhatsApp">
+                                    <i class="bi bi-whatsapp"></i> Send via WhatsApp
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-logo">
+                <img src="images/LOGO_OUTLINE.png" alt="Albert Johnson Logo">
+            </div>
+            <div class="footer-text">
+                <p data-i18n="copyright">&copy; 2025 Albert Johnson Technology. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Language translation object
+            const translations = {
+                en: {
+                    alert: 'Please fill out all fields.',
+                    home: "Home",
+                    about: "About",
+                    speciality: "Speciality",
+                    projects: "Projects",
+                    visit: "Visit",
+                    portfolio: "Portfolio",
+                    contact: "Contact",
+                    title: "TRANSFORMING IDEAS INTO DIGITAL REALITY",
+                    intro1: "Creativity and innovation go hand in hand. With a unique combination of impactful design, intuitive functionality, and results-driven optimization, I am ready to create the online presence of your dreams.",
+                    intro2: "My name is <strong>Albert</strong>, and I am a <strong>Web Developer</strong>. I specialize in creating websites that are not only visually appealing but also user-friendly and optimized for performance.",
+                    linkUp: "Let's Connect",
+                    specialityTitle: "MY SPECIALITIES",
+                    specialityDesc: "I offer a range of services to bring your digital vision to life",
+                    webDesign: "Web Design",
+                    webDesignDesc: "Creating visually appealing and user-friendly websites that enhance the user experience.",
+                    webDev: "Web Development",
+                    webDevDesc: "Building robust and scalable web applications using the latest technologies and frameworks.",
+                    seo: "SEO Optimization",
+                    seoDesc: "Improving website visibility and ranking on search engines through effective SEO strategies.",
+                    aboutTitle: "ABOUT ME",
+                    aboutText1: "As a web developer, I am passionate about creating websites that are not only visually appealing but also user-friendly and optimized for performance. I have a strong foundation in HTML, CSS, and JavaScript, and I am constantly learning new technologies and frameworks to stay up-to-date with the latest trends in web development.",
+                    aboutText2: "I believe that a website should be a reflection of the brand it represents, and I work closely with my clients to understand their vision and goals. My attention to detail and commitment to quality ensure that every project I undertake is completed to the highest standard.",
+                    projectsTitle: "MY PROJECTS",
+                    projectsDesc: "Check out some of my recent work",
+                    project1Title: "Countdown Timer",
+                    project1Desc: "A responsive countdown timer with modern design and customizable options.",
+                    project2Title: "Restaurant Website",
+                    project2Desc: "An elegant website for a restaurant with menu, reservation system and gallery.",
+                    project3Title: "Disney+ Clone",
+                    project3Desc: "A functional clone of the Disney+ streaming platform with responsive design.",
+                    portfolioTitle: "MY PORTFOLIO",
+                    portfolioDesc: "A visual showcase of my work and projects",
+                    contactTitle: "CONTACT ME",
+                    contactDesc: "Get in touch and let's discuss your project",
+                    formName: "Name",
+                    formPhone: "Phone",
+                    formEmail: "Email",
+                    formMessage: "Message",
+                    send: "Send Message",
+                    whatsappTitle: "Message me on WhatsApp",
+                    sendWhatsApp: "Send via WhatsApp",
+                    copyright: "&copy; 2025 Albert Johnson Technology. All rights reserved."
+                },
+                pt: {
+                    alert: 'Por favor, preencha todos os campos.',
+                    home: "Início",
+                    about: "Sobre",
+                    speciality: "Especialidade",
+                    projects: "Projetos",
+                    visit: "Visitar",
+                    portfolio: "Portfólio",
+                    contact: "Contato",
+                    title: "TRANSFORMANDO IDEIAS EM REALIDADE DIGITAL",
+                    intro1: "Criatividade e inovação andam de mãos dadas. Com uma combinação única de design impactante, funcionalidade intuitiva e otimização orientada a resultados, estou pronto para criar a presença online dos seus sonhos.",
+                    intro2: "Meu nome é <strong>Albert</strong>, e eu sou um <strong>Desenvolvedor Web</strong>. Eu me especializo em criar sites que não são apenas visualmente atraentes, mas também fáceis de usar e otimizados para desempenho.",
+                    linkUp: "Vamos Conectar",
+                    specialityTitle: "MINHAS ESPECIALIDADES",
+                    specialityDesc: "Ofereço uma variedade de serviços para trazer sua visão digital à vida",
+                    webDesign: "Design Web",
+                    webDesignDesc: "Criação de sites visualmente atraentes e fáceis de usar que melhoram a experiência do usuário.",
+                    webDev: "Desenvolvimento Web",
+                    webDevDesc: "Construção de aplicações web robustas e escaláveis usando as mais recentes tecnologias e frameworks.",
+                    seo: "Otimização SEO",
+                    seoDesc: "Melhorando a visibilidade e classificação do site nos mecanismos de busca através de estratégias eficazes de SEO.",
+                    aboutTitle: "SOBRE MIM",
+                    aboutText1: "Como desenvolvedor web, sou apaixonado por criar sites que não são apenas visualmente atraentes, mas também fáceis de usar e otimizados para desempenho. Tenho uma base sólida em HTML, CSS e JavaScript, e estou constantemente aprendendo novas tecnologias e frameworks para me manter atualizado com as últimas tendências em desenvolvimento web.",
+                    aboutText2: "Acredito que um site deve ser um reflexo da marca que representa, e trabalho em estreita colaboração com meus clientes para entender sua visão e objetivos. Minha atenção aos detalhes e compromisso com a qualidade garantem que cada projeto que realizo seja concluído no mais alto padrão.",
+                    projectsTitle: "MEUS PROJETOS",
+                    projectsDesc: "Confira alguns dos meus trabalhos recentes",
+                    project1Title: "Temporizador de Contagem Regressiva",
+                    project1Desc: "Um temporizador de contagem regressiva responsivo com design moderno e opções personalizáveis.",
+                    project2Title: "Site de Restaurante",
+                    project2Desc: "Um site elegante para restaurante com cardápio, sistema de reservas e galeria.",
+                    project3Title: "Clone Disney+",
+                    project3Desc: "Um clone funcional da plataforma de streaming Disney+ com design responsivo.",
+                    portfolioTitle: "MEU PORTFÓLIO",
+                    portfolioDesc: "Uma mostra visual do meu trabalho e projetos",
+                    contactTitle: "ENTRE EM CONTATO",
+                    contactDesc: "Entre em contato e vamos discutir seu projeto",
+                    formName: "Nome",
+                    formPhone: "Telefone",
+                    formEmail: "Email",
+                    formMessage: "Mensagem",
+                    send: "Enviar Mensagem",
+                    whatsappTitle: "Envie uma mensagem no WhatsApp",
+                    sendWhatsApp: "Enviar via WhatsApp",
+                    copyright: "&copy; 2025 Albert Johnson Technology. Todos os direitos reservados."
+                },
+                es: {
+                    alert: 'Por favor, complete todos los campos.',
+                    home: "Inicio",
+                    about: "Sobre mí",
+                    speciality: "Especialidad",
+                    projects: "Proyectos",
+                    visit: "Visitar",
+                    portfolio: "Portafolio",
+                    contact: "Contacto",
+                    title: "TRANSFORMANDO IDEAS EN REALIDAD DIGITAL",
+                    intro1: "La creatividad y la innovación van de la mano. Con una combinación única de diseño impactante, funcionalidad intuitiva y optimización orientada a resultados, estoy listo para crear la presencia en línea de tus sueños.",
+                    intro2: "Mi nombre es <strong>Albert</strong>, y soy un <strong>Desarrollador Web</strong>. Me especializo en crear sitios web que no solo son visualmente atractivos, sino también fáciles de usar y optimizados para el rendimiento.",
+                    linkUp: "Conectémonos",
+                    specialityTitle: "MIS ESPECIALIDADES",
+                    specialityDesc: "Ofrezco una variedad de servicios para hacer realidad tu visión digital",
+                    webDesign: "Diseño Web",
+                    webDesignDesc: "Creación de sitios web visualmente atractivos y fáciles de usar que mejoran la experiencia del usuario.",
+                    webDev: "Desarrollo Web",
+                    webDevDesc: "Construcción de aplicaciones web robustas y escalables utilizando las últimas tecnologías y frameworks.",
+                    seo: "Optimización SEO",
+                    seoDesc: "Mejorando la visibilidad y el ranking del sitio web en los motores de búsqueda a través de estrategias efectivas de SEO.",
+                    aboutTitle: "SOBRE MÍ",
+                    aboutText1: "Como desarrollador web, me apasiona crear sitios web que no solo sean visualmente atractivos, sino también fáciles de usar y optimizados para el rendimiento. Tengo una base sólida en HTML, CSS y JavaScript, y estoy constantemente aprendiendo nuevas tecnologías y frameworks para mantenerme actualizado con las últimas tendencias en desarrollo web.",
+                    aboutText2: "Creo que un sitio web debe ser un reflejo de la marca que representa, y trabajo en estrecha colaboración con mis clientes para comprender su visión y objetivos. Mi atención al detalle y compromiso con la calidad aseguran que cada proyecto que emprendo se complete con los más altos estándares.",
+                    projectsTitle: "MIS PROYECTOS",
+                    projectsDesc: "Echa un vistazo a algunos de mis trabajos recientes",
+                    project1Title: "Temporizador de Cuenta Regresiva",
+                    project1Desc: "Un temporizador de cuenta regresiva responsive con diseño moderno y opciones personalizables.",
+                    project2Title: "Sitio Web de Restaurante",
+                    project2Desc: "Un sitio web elegante para restaurante con menú, sistema de reservas y galería.",
+                    project3Title: "Clon de Disney+",
+                    project3Desc: "Un clon funcional de la plataforma de streaming Disney+ con diseño responsive.",
+                    portfolioTitle: "MI PORTAFOLIO",
+                    portfolioDesc: "Una muestra visual de mi trabajo y proyectos",
+                    contactTitle: "CONTÁCTAME",
+                    contactDesc: "Ponte en contacto y hablemos de tu proyecto",
+                    formName: "Nombre",
+                    formPhone: "Teléfono",
+                    formEmail: "Correo electrónico",
+                    formMessage: "Mensaje",
+                    send: "Enviar Mensaje",
+                    whatsappTitle: "Envíame un mensaje por WhatsApp",
+                    sendWhatsApp: "Enviar por WhatsApp",
+                    copyright: "&copy; 2025 Albert Johnson Technology. Todos los derechos reservados."
+                }
+            };
+
+            // Function to change language
+            function changeLanguage(lang) {
+                // Set all language buttons to inactive
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.lang === lang) btn.classList.add('active');
+                });
+
+                // Update all elements with data-i18n attribute
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.placeholder = translations[lang][key];
+                        } else {
+                            element.innerHTML = translations[lang][key];
+                        }
+                    }
+                });
+
+                // Store selected language in localStorage
+                localStorage.setItem('selectedLanguage', lang);
+            }
+
+            // Initialize language on page load
+            function initLanguage() {
+                const savedLanguage = localStorage.getItem('selectedLanguage') ||
+                    (navigator.language.startsWith('pt') ? 'pt' :
+                        navigator.language.startsWith('es') ? 'es' : 'en');
+                changeLanguage(savedLanguage);
+            }
+
+            // Mobile menu functionality
+            function setupMobileMenu() {
+                const mobileToggle = document.getElementById('mobile-toggle');
+                const navMenu = document.getElementById('nav-menu');
+
+                if (mobileToggle && navMenu) {
+                    mobileToggle.addEventListener('click', function () {
+                        navMenu.classList.toggle('active');
+                        mobileToggle.innerHTML = navMenu.classList.contains('active') ?
+                            '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+                    });
+
+                    // Close menu when clicking on a link
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            navMenu.classList.remove('active');
+                            mobileToggle.innerHTML = '<i class="bi bi-list"></i>';
+                        });
+                    });
+                }
+            }
+
+            // Smooth scrolling for anchor links
+            function setupSmoothScrolling() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        const targetId = this.getAttribute('href');
+                        if (targetId === '#') return;
+
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            }
+
+            // Header scroll effect
+            function setupHeaderScroll() {
+                const header = document.getElementById('header');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+
+            // WhatsApp form functionality
+            function setupWhatsAppForm() {
+                const form = document.getElementById('form-whatsapp');
+                if (form) {
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        const nome = document.getElementById('nome').value.trim();
+                        const telefone = document.getElementById('telefone').value.trim();
+                        const mensagem = document.getElementById('mensagem').value.trim();
+
+                        if (!nome || !telefone || !mensagem) {
+                            alert(translations[localStorage.getItem('selectedLanguage') || 'en'].alert);
+                            return;
+                        }
+
+                        const texto = `Olá! Me chamo ${nome}, meu telefone é ${telefone} e minha mensagem é: ${mensagem}`;
+                        const msgFormat = encodeURIComponent(texto);
+
+                        const url = `https://api.whatsapp.com/send?phone=5531975057303&text=${msgFormat}`;
+
+                        window.open(url, '_blank');
+                    });
+                }
+            }
+
+            // Initialize all functionality
+            function init() {
+                initLanguage();
+
+                // Add event listeners to language buttons
+                document.querySelectorAll('.language-btn').forEach(btn => {
+                    btn.addEventListener('click', function () {
+                        const lang = this.getAttribute('data-lang');
+                        changeLanguage(lang);
+                    });
+                });
+
+                setupMobileMenu();
+                setupSmoothScrolling();
+                setupHeaderScroll();
+                setupWhatsAppForm();
+            }
+
+            // Start the application
+            init();
+        });
+    </script>
+</body>
+
+</html>
